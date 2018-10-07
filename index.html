@@ -1,0 +1,69 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Bigelow+Rules|Nova+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+    <!--<script src="game.js"></script>-->
+</head>
+<body>
+        <h1>Psychic Game</h1>
+
+        <hr>
+
+<p>Guess a letter!</p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="guesses-left-text"></p>
+        <p id="letters-guessed-text"></p>
+
+        <script type="text/javascript">
+
+
+            //defines computer letter choices
+            var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            
+            //creates variable to hold number of wins, losses and guesses remaining.
+            var wins = 0;
+            var losses = 0;
+            var guessesLeft = 9;
+            var lettersGuessed = "";
+
+            var lettersGuessedText = document.getElementById("letters-guessed-text");
+            var winsText = document.getElementById("wins-text");
+            var lossesText = document.getElementById("losses-text");
+            var guessesLeftText = document.getElementById("guesses-left-text");
+            
+
+
+            //defines event that occurs when user makes choice
+            document.onkeyup = function(event) {
+               
+                //functioning (need it to log input)
+               lettersGuessedText.textContent = event.key;
+
+            //computer randomly chooses a letter from choices(keeps generating for every key pressed)
+            var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+                
+                //console.log(computerOutput);
+
+                if (lettersGuessed === computerOutput){
+                    wins++;
+                } else {
+                    guessesLeft--;
+                }
+            };
+            
+            //Display user input and wins, losses and guesses left;
+            winsText.textContent = "Wins: " + wins;
+            lossesText.textContent = "Losses: " + losses;
+            guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+            lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+            
+
+        </script>
+</body>
+</html>
