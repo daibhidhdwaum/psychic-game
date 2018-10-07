@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,8 +6,8 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Bigelow+Rules|Nova+Mono" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
-    <!--<script src="game.js"></script>-->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <!--<script src="assets/game.js"></script>-->
 </head>
 <body>
         <h1>Psychic Game</h1>
@@ -20,7 +20,7 @@
         <p id="guesses-left-text"></p>
         <p id="letters-guessed-text"></p>
 
-        <script type="text/javascript">
+       <script type="text/javascript">
 
 
             //defines computer letter choices
@@ -37,23 +37,22 @@
             var lossesText = document.getElementById("losses-text");
             var guessesLeftText = document.getElementById("guesses-left-text");
             
-
+            //computer randomly chooses a letter from array(keeps generating for every key pressed)
+            var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
             //defines event that occurs when user makes choice
             document.onkeyup = function(event) {
                
                 //functioning (need it to log input)
-               lettersGuessedText.textContent = event.key;
-
-            //computer randomly chooses a letter from choices(keeps generating for every key pressed)
-            var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            lettersGuessed = lettersGuessed + " " + event.key;
+                console.log(lettersGuessed);
                 
                 //console.log(computerOutput);
 
-                if (lettersGuessed === computerOutput){
+                if (event.key === computerOutput){
                     wins++;
                 } else {
-                    guessesLeft--;
+                    
                 }
             };
             
