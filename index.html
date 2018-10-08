@@ -38,14 +38,16 @@
             var guessesLeftText = document.getElementById("guesses-left-text");
 
             var computerOutput;
-            
-            //computer randomly chooses a letter from array(keeps generating for every key pressed)
-            var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-            //console.log(computerOutput);
+            var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            
+            //resets the game 
             function newGame(){
                 guessesLeft = 9;
                 lettersGuessed = "";
+                //computer randomly chooses a letter from array
+                var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+                console.log(computerOutput);
             }
 
             //defines event that occurs when user makes choice
@@ -53,9 +55,8 @@
                
                 //functioning 
             lettersGuessed = lettersGuessed + " " + event.key;
-                console.log(lettersGuessed);
                 
-                //console.log(computerOutput);
+                //console.log(lettersGuessed);
 
                 if (event.key === computerOutput){
                     wins++;
@@ -64,6 +65,7 @@
                     guessesLeft--;
                     if (guessesLeft === -1){
                         losses++;
+                        newGame();
                     }
                 }
                 updateText();
