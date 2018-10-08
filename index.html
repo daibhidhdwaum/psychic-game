@@ -42,7 +42,11 @@
             //computer randomly chooses a letter from array(keeps generating for every key pressed)
             var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-            console.log(computerOutput);
+            //console.log(computerOutput);
+            function newGame(){
+                guessesLeft = 9;
+                lettersGuessed = "";
+            }
 
             //defines event that occurs when user makes choice
             document.onkeyup = function(event) {
@@ -55,6 +59,7 @@
 
                 if (event.key === computerOutput){
                     wins++;
+                    newGame();
                 } else {
                     guessesLeft--;
                     if (guessesLeft === -1){
