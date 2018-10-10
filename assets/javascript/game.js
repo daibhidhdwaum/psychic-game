@@ -1,35 +1,55 @@
-var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+ //defines computer letter choices
+ var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            
+ //creates variable to hold number of wins, losses and guesses remaining.
+ var wins = 0;
+ var losses = 0;
+ var guessesLeft = 9;
+ var lettersGuessed = "";
 
-//var wins = 0;
-//var loss = 0;
-//var guessesLeft = 9;
+ var lettersGuessedText = document.getElementById("letters-guessed-text");
+ var winsText = document.getElementById("wins-text");
+ var lossesText = document.getElementById("losses-text");
+ var guessesLeftText = document.getElementById("guesses-left-text");
 
-//var wins = document.getElementById("wins");
-//var losses = document.getElementById("losses");
-//var guessesLeft = document.getElementById("guesses-left");
-var lettersGuessed = document.getElementById("letters-guessed");
+ var computerOutput;
 
+ var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+ 
+ //resets the game 
+ function newGame(){
+     guessesLeft = 9;
+     lettersGuessed = "";
+     //computer randomly chooses a letter from array
+     var computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+     console.log(computerOutput);
+ }
 
-//this function logs the userselection to the page(for some reason it doesn't work through the JS file though)
-document.onkeyup = function(event) {
+ //defines event that occurs when user makes choice
+ document.onkeyup = function(event) {
     
-    lettersGuessed.textContent = event.key;
-    
+     //functioning 
+ lettersGuessed = lettersGuessed + " " + event.key;
+     
+     //console.log(lettersGuessed);
 
-};
-    var computerOutput = computerChoices[(Math.random() * computerChoices.length)];
-
-    console.log(computerOutput);
-
-
-    /*if (userGuess === computerOutput) {
-        wins++;
-    }else if (userGuess === computerOutput -1){
-        losses++;
-}*/
-
-/*wins.textContent = "Wins: " + wins;
-losses.textContent = "Losses: " + losses;
-guessesLeft.textContent = "Guesses Left: " + guessesLeft;
-lettersGuessed.textContent = "Letters Guessed: " + lettersGuessed;*/
-
+     if (event.key === computerOutput){
+         wins++;
+         newGame();
+     } else {
+         guessesLeft--;
+         if (guessesLeft === -1){
+             losses++;
+             newGame();
+         }
+     }
+     updateText();
+ };
+ 
+ function updateText (){
+ //Display user input and wins, losses and guesses left;
+ winsText.textContent = "Wins: " + wins;
+ lossesText.textContent = "Losses: " + losses;
+ guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+ lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+ }
