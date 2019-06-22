@@ -21,7 +21,7 @@ function newGame(){
     lettersGuessed = "";
     computerOutput = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     updateText();
-    console.log(computerOutput);
+    //console.log(computerOutput);
 }
 
 
@@ -38,7 +38,7 @@ document.onkeyup = function(event) {
         newGame();
     } else {
         guessesLeft--;
-        if (guessesLeft === -1){
+        if (guessesLeft === 0){
             losses++;
             newGame();
         }
